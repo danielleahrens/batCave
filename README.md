@@ -1,5 +1,5 @@
 # batCave
-This is the firmware running on the temperature/humidity sensors (an ESP32 DevKit V1 with a DHT22 temperature/humidity sensor). It sends temperature and humidity metrics to the Cenozoa webserver (github.com/danielleahrens/cenozoa).
+This is the firmware running on the temperature/humidity sensors (an ESP32 DevKit V1 with a DHT22 temperature/humidity sensor). It sends temperature and humidity metrics to the Cenozoa webserver (https://github.com/danielleahrens/cenozoa).
 
 ![cenozoa_diagram](https://user-images.githubusercontent.com/31782840/108779365-bf1c8a80-7534-11eb-91d8-64da8f6bad4e.png)
 
