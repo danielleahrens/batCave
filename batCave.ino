@@ -2,6 +2,7 @@
 #include "time.h"
 #include "HTTPClient.h"
 #include "WiFiMulti.h"
+#include "base64.h"
 
 WiFiMulti WiFiMulti;
 
@@ -16,11 +17,8 @@ const long daylightOffset_s = -144000;
 
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(9600);
   delay(10);
-
-//  struct Configs cnfg = getConfig();
 
   Serial.println();
   Serial.print("MAC Address: ");
@@ -40,7 +38,6 @@ void setup() {
 
 
 void loop() {
-  // put your main code here, to run repeatedly:  
   float h=dht.readHumidity();
   float t = dht.readTemperature();
   float f = dht.readTemperature(true);
@@ -64,11 +61,11 @@ void loop() {
   Serial.print(f);
   Serial.println(F(" oF "));
 
-  String httpRequestData = "{\"sensor_type\":\"" + appSensorTypeConfig() + "\",\"sensor_id\":\"" + appSensorIDConfig() + "\",\"metric_name\":\"humidity\",\"metric_value\":\"" + h + "\",\"timestamp_s\":\"" + now + "\",\"tags\":[{\"units\":\"%RH\"}]}";
-  postRequest(serverNameConfig() + serverEndpointConfig(), httpRequestData);
+  String httpRequestData = "{\"sensor_type\":\"" + appSensorTypeConfig() + "\",\"sensor_id\": [\"" + appSensorIDConfig() + "\"],\"metric_name\":\"humidity\",\"metric_value\":\"" + h + "\",\"timestamp_s\":\"" + now + "\",\"tags\":[{\"units\":\"%RH\"}]}";
+  postRequest(serverNameConfig() + serverEndpointConfig(), httpRequestData, serverUsernameConfig(), serverPasswordConfig());
 
-  httpRequestData = "{\"sensor_type\":\"" + appSensorTypeConfig() + "\",\"sensor_id\":\"" + appSensorIDConfig() + "\",\"metric_name\":\"temperature\",\"metric_value\":\"" + f + "\",\"timestamp_s\":\"" + now + "\",\"tags\":[{\"units\":\"oF\"}]}";
-  postRequest(serverNameConfig() + serverEndpointConfig(), httpRequestData);
+  httpRequestData = "{\"sensor_type\":\"" + appSensorTypeConfig() + "\",\"sensor_id\": [\"" + appSensorIDConfig() + "\"],\"metric_name\":\"temperature\",\"metric_value\":\"" + f + "\",\"timestamp_s\":\"" + now + "\",\"tags\":[{\"units\":\"oF\"}]}";
+  postRequest(serverNameConfig() + serverEndpointConfig(), httpRequestData, serverUsernameConfig(), serverPasswordConfig());
   
   delay(appDelayConfig());
 }
