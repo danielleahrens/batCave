@@ -13,7 +13,7 @@ This is the firmware running on the temperature/humidity sensors (an ESP32 DevKi
 
 ![cenozoa_diagram](https://user-images.githubusercontent.com/31782840/108779365-bf1c8a80-7534-11eb-91d8-64da8f6bad4e.png)
 
-This sensor is a part of the Cenozoa IoT Farm Platform (https://cenozoa.danielleahrens.com) the component parts include:
+This sensor is a part of the Cenozoa IoT Farm Platform. The component parts include:
 - Web Server: https://github.com/danielleahrens/cenozoa
 - User Interface: https://github.com/danielleahrens/attenborough
 - Temp/Humidity Sensor: https://github.com/danielleahrens/batCave
